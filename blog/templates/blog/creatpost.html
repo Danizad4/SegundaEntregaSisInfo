@@ -2,16 +2,13 @@
 
 {% block title %}Criar Post{% endblock %}
 
+
+
 {% block content %}
-    <h2>Criar um Novo Post</h2>
-    <form method="post">
+    <h1>Criar Novo Post</h1>
+    <form method="POST">
         {% csrf_token %}
-        <label for="title">Título:</label>
-        <input type="text" id="title" name="title" placeholder="Título" required><br>
-
-        <label for="content">Conteúdo:</label>
-        <textarea id="content" name="content" placeholder="Conteúdo" required></textarea><br>
-
+        {{ form.as_p }}  
         <button type="submit">Salvar</button>
     </form>
 {% endblock %}
