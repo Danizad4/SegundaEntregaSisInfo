@@ -1,17 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
 from .models import Post
+
+
+def index(request):
+    return render(request, 'staticpages/index.html')
 
 def homepage (request):
     posts = Post.objects.all()
     return render (request, 'blog/base.html', {'posts': posts})
 
 def detail_post(request, pk):
-    post = get_object_or_404(Post, id = post)
+    post = get_object_or_404(Post, id = pk)
     return render(request, 'blog/detailpost.html', {'post': post})
 
 def search_post(request):
     query = request.GET.get('q', '')
+    print(f"Buscando por: {query}")
     posts = Post.objects.filter(title__icontains=query) if query else []
     return render(request, 'blog/searchpost.html', {'posts': posts, 'query': query})
 
@@ -21,12 +25,12 @@ def list_post(request):
 
 def create_post(request):
     if request.method == 'POST':
-        title = request.POST.get('title')
-        content = request.POST.get('content')
+        title = request.POST.get('title') 
+        content = request.POST.get('content')  
         if title and content:  
-            Post.objects.create(title=title, content=content)
-            return redirect('blog:listpost')
-    return render(request, 'blog/createpost.html')
+            Post.objects.create(title=title, content=content)   
+            return redirect('blog:listpost')  
+    return render(request, 'blog/creatpost.html') 
 
 def update_post(request, pk):
     post = get_object_or_404(Post, pk=pk)

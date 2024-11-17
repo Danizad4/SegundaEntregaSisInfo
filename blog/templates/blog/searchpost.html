@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Procurar</h1>
-    <form method="get">
+    <form method="get" action="{% url 'blog:searchpost' %}">
         <input type="text" name="q" placeholder="Procurando..." value="{{ query }}">
         <button type="submit">Procurar</button>
     </form>

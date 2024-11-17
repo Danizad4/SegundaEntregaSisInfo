@@ -12,7 +12,7 @@
     <header>
         <h1>Meu Blog</h1>
         <nav>
-            <a href="/">Home</a>
+            <a href="{% url 'blog:index' %}">Pagina inicial</a>
             <a href="{% url 'blog:createpost' %}">Criar Post</a>
             <a href="{% url 'blog:listpost' %}">Listar Posts</a>
         </nav>
