@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>At Post</h1>
+    <h1>Atualizar Post</h1>
     <form method="post">
         {% csrf_token %}
         <input type="text" name="title" value="{{ post.title }}"><br>
         <textarea name="content">{{ post.content }}</textarea><br>
-        <button type="submit">Update</button>
+        <button type="submit">Atualizar</button>
     </form>
 {% endblock %}
