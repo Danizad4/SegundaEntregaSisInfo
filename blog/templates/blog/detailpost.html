@@ -2,6 +2,27 @@
 
 {% block content %}
     <h1>{{ post.title }}</h1>
-    <div>{{ post.content|safe }}</div> 
-    <p><strong>Publicado em:</strong> {{ post.created_at|date:"d/m/Y H:i" }}</p>
+    <p>{{ post.content|safe }}</p>
+    <p>Publicado em {{ post.created_at|date:"d/m/Y H:i" }}</p>
+
+    <h2>Comentários</h2>
+    {% if comments %}
+        <ul>
+            {% for comment in comments %}
+                <li>
+                    <strong>{{ comment.author }}</strong> em {{ comment.created_at|date:"d/m/Y H:i" }}:
+                    <p>{{ comment.text }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sem comentários ainda.</p>
+    {% endif %}
+
+    <h3>Adicionar Comentário</h3>
+    <form method="post" action="{% url 'blog:addcomment' post.pk %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
 {% endblock %}
