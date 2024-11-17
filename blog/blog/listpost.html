@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Todos os Posts</h1>
+    <a href="{% url 'blog:createpost' %}">Criar novo post</a>
+    {% for post in posts %}
+        <a href="{% url 'blog:detailpost' post.pk %}">{{ post.title }}</a><br>
+    {% empty %}
+        <p>SEm post.</p>
+    {% endfor %}
+{% endblock %}
