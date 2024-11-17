@@ -6,13 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Meu Blog{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
 </head>
 <body>
     <header>
         <h1>Meu Blog</h1>
         <nav>
             <a href="/">Home</a>
+            <a href="{% url 'blog:createpost' %}">Criar Post</a>
+            <a href="{% url 'blog:listpost' %}">Listar Posts</a>
         </nav>
     </header>
     <main>

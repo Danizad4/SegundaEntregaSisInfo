@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Posts{% endblock %}
+
+{% block content %}
+    <h2>Posts Recentes</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'blog:detailpost' post.id %}">{{ post.title }}</a>
+            </li>
+        {% empty %}
+            <li>Não há posts disponíveis no momento.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

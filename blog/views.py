@@ -2,8 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Post
 
+def homepage (request):
+    posts = Post.objects.all()
+    return render (request, 'blog/base.html', {'posts': posts})
+
 def detail_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, id = post)
     return render(request, 'blog/detailpost.html', {'post': post})
 
 def search_post(request):
@@ -42,6 +46,8 @@ def delete_post(request, pk):
         post.delete()
         return redirect('blog:listpost')
     return render(request, 'blog/deletepost.html', {'post': post})
+
+
 
 
 # Create your views here.
