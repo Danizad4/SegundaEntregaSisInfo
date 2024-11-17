@@ -1,19 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Buscar Posts{% endblock %}
-
 {% block content %}
-    <h2>Procurar Posts</h2>
-    <form method="get">
-        <input type="text" name="q" placeholder="Procurar..." value="{{ query }}">
-        <button type="submit">Procurar</button>
-    </form>
-    
+    <h1>Lista de Posts</h1>
     <ul>
         {% for post in posts %}
             <li><a href="{% url 'blog:detailpost' post.pk %}">{{ post.title }}</a></li>
-        {% empty %}
-            <li>Sem resultados.</li>
         {% endfor %}
     </ul>
 {% endblock %}

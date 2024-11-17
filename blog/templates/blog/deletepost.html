@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <h1>Deletar Post</h1>
-    <p>Deseja deletar este Post ?"{{ post.title }}"?</p>
-    <form method="post">
+    <h1>Excluir Post: {{ post.title }}</h1>
+    <p>Você tem certeza que deseja excluir este post?</p>
+    <form method="POST">
         {% csrf_token %}
-        <button type="submit">Sim, Deletar</button>
+        <button type="submit">Sim, excluir</button>
     </form>
+    <a href="{% url 'blog:listpost' %}">Cancelar</a>
 {% endblock %}
