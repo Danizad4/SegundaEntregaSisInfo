@@ -2,7 +2,7 @@ from django.urls import path, include
 from . import views
 from django.contrib import admin
 from django.urls import path
-from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, add_comment
+from .views import (PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, add_comment, CategoryDetailView, CategoryListView)
 
 app_name = 'blog'
 
@@ -13,6 +13,8 @@ urlpatterns = [
     path('post/create/', PostCreateView.as_view(), name='creatpost'),
     path('post/<int:pk>/edit/', PostUpdateView.as_view(), name='updatepost'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='deletepost'),
+    path('categories/', CategoryListView.as_view(), name='categorylist'),
+    path('categories/<int:pk>/', CategoryDetailView.as_view(), name='categorydetail'),
     path('post/<int:pk>/comment/', add_comment, name='addcomment'),
     path('admin/', admin.site.urls), 
 ]

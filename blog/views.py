@@ -1,9 +1,27 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Post
+from .models import Post, Category
 from .forms import PostForm, CommentForm
 
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'blog/categorylist.html'
+    context_object_name = 'categories'
+    
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = 'blog/categorydetail.html'
+    context_object_name = 'category'
+    
+    def get_queryset(self):
+        return Category.objects.prefetch_related('posts').all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = self.object.posts.all() 
+        return context
+    
 class PostListView(ListView):
     model = Post
     template_name = 'blog/listpost.html'

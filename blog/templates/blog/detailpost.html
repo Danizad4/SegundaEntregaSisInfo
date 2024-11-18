@@ -5,6 +5,15 @@
     <p>{{ post.content|safe }}</p>
     <p>Publicado em {{ post.created_at|date:"d/m/Y H:i" }}</p>
 
+    <h2>Categorias</h2>
+    <ul>
+        {% for category in post.categories.all %}
+            <li>
+                <a href="{% url 'blog:categorydetail' category.pk %}">{{ category.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
     <h2>Comentários</h2>
     {% if comments %}
         <ul>
